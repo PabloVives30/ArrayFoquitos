@@ -42,9 +42,9 @@ public class FoquitoScript : MonoBehaviour
 
     void DeactivateAllLights()
     {
-        foreach (GameObject g in colors)
+        for (int i = 0; i < colors.Length; i++)
         {
-            g.SetActive(false);
+            colors[i].SetActive(false);
         }
     }
 
