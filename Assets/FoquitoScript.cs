@@ -5,28 +5,34 @@ using UnityEngine;
 public class FoquitoScript : MonoBehaviour
 {
     [SerializeField] GameObject[] colors;
-    public int currentLightIndex =-1;
-
+    public int currentLightIndex = -1;
+    public int ContadorLuces = 0;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ActivateNextLight()
     {
         currentLightIndex++;
+       
         if (currentLightIndex >= colors.Length)
         {
             currentLightIndex = 0;
+            ContadorLuces++;
         }
         DeactivateAllLights();
         colors[currentLightIndex].SetActive(true);
+        if(ContadorLuces >= 3)
+        {
+            QuemarLuces();
+        }
     }
 
     public void ActivatePreviousLight()
@@ -40,7 +46,7 @@ public class FoquitoScript : MonoBehaviour
         colors[currentLightIndex].SetActive(true);
     }
 
-    void DeactivateAllLights()
+    public void DeactivateAllLights()
     {
         for (int i = 0; i < colors.Length; i++)
         {
@@ -50,6 +56,11 @@ public class FoquitoScript : MonoBehaviour
 
     public void ActivateRepeating(float t)
     {
-        InvokeRepeating(nameof(ActivateNextLight),0,t);
+        InvokeRepeating(nameof(ActivateNextLight), 0, t);
+    }
+
+    public void QuemarLuces()
+    {
+        Destroy(gameObject);        
     }
 }
